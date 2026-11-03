@@ -11,6 +11,10 @@
 - Fine-tune a model and check that the result reloads and runs
 :::
 
+:::{callout} Starting with Part 2?
+You need the hub ({doc}`setup`) and one GPU-verified model ({doc}`part1-2-install`).
+:::
+
 Pretrained models are trained on large, general datasets. For a specific system,
 such as one catalyst surface or one electrolyte, fine-tuning on your own DFT data
 can improve accuracy where it matters for you.
@@ -81,15 +85,33 @@ other does not?
 :::
 
 :::{exercise} Exercise 2: a short fine-tuning run
-Fine-tune MACE on a small dataset of your own (or any extxyz file with energies
-and forces) for a few epochs, then verify the checkpoint.
+Fine-tune MACE on a small dataset for a few epochs, then verify the checkpoint.
+Use your own DFT frames, or make a toy dataset with ASE's EMT potential. Toy data
+only exercises the pipeline; it says nothing about accuracy.
 :::
 
 :::{solution}
 ```bash
+PY=$(python -c 'from oh_my_mlip import resolve; print(resolve("MACE")["python"])')
+"$PY" - <<'EOF'
+from ase.build import bulk
+from ase.calculators.emt import EMT
+from ase.io import write
+frames = []
+for i in range(40):
+    atoms = bulk("Cu", "fcc", a=3.6, cubic=True).repeat(2)
+    atoms.rattle(0.05, seed=i)
+    atoms.calc = EMT()
+    atoms.get_potential_energy(); atoms.get_forces()
+    frames.append(atoms)
+write("frames.extxyz", frames)
+EOF
 python scripts/ft_run.py MACE --dataset frames.extxyz --out ft_mace --epochs 5 --seed 0
 python scripts/ft_verify.py ft_mace/<checkpoint> --model MACE --json
 ```
+
+`<checkpoint>` is the checkpoint file in the output directory; `ft_run.json` there
+records what was run.
 :::
 
 :::{keypoints}

@@ -12,8 +12,8 @@
 
 ## Install where you will compute
 
-Some frameworks compile kernels for the GPU they are installed on (NequIP with
-OpenEquivariance, Allegro with CuEquivariance, and the D3 kernel). Verification
+Some frameworks compile kernels for the GPU they are installed on (NequIP and
+SevenNet with OpenEquivariance, Allegro with CuEquivariance, and the D3 kernel). Verification
 also needs a GPU. On a cluster, run the installation inside a GPU job or an
 interactive GPU session, on the same kind of GPU you will use for production.
 

@@ -57,28 +57,49 @@ and the engine are.
 
 ## Or run it yourself
 
+From the hub directory:
+
 ```bash
+HUB=$PWD
 PY=$(python3 -c "import oh_my_mlip; print(oh_my_mlip.resolve('MACE-MPA-0')['python'])")
-scripts/build_lammps_nnmtp.sh --repo <onthefly-distill>      # once
+git clone https://github.com/JinukMoon/onthefly-distill.git ../onthefly-distill   # once
+scripts/build_lammps_nnmtp.sh --repo ../onthefly-distill                            # once
 "$PY" scripts/distill_bootstrap.py --teacher MACE-MPA-0 --structure slab.vasp \
-    --work ./distill --repo <onthefly-distill> --lmp-bin <lmp>
+    --work ./distill --repo ../onthefly-distill --lmp-bin <lmp>
 cd distill && sh run_distill.sh > distill.log 2>&1
 ```
 
-For a student you will actually use, choose a production run with explicit
-targets (held-out energy and force errors, stable MD length, number of rounds),
-then check the verdict:
+`<lmp>` is the LAMMPS binary with the NN-MTP pair style. This quick run only
+exercises the loop; it says nothing about the student's accuracy.
+
+For a student you will actually use, run in production mode with explicit
+targets (values in `< >` are yours to choose), again from the hub directory:
 
 ```bash
-"$PY" scripts/distill_verify.py --work ./distill --json
+cd "$HUB"
+"$PY" "$HUB/scripts/distill_bootstrap.py" --teacher MACE-MPA-0 --structure slab.vasp \
+    --work ./distill_prod --repo ../onthefly-distill --lmp-bin <lmp> \
+    --acceptance --mode production \
+    --energy-mae-max <meV/atom> --force-mae-max <meV/A> \
+    --target-ps <stable MD length, ps> --max-iter <AL rounds> --no-progress-limit <rounds>
 ```
+
+and check the verdict, which needs both held-out accuracy and a stable LAMMPS run:
+
+```bash
+"$PY" "$HUB/scripts/distill_verify.py" --work ./distill_prod --json
+```
+
+Held-out frames you supply with `--heldout-file` must lie within the
+compositions the pool spans.
 
 ## What the current engine fixes
 
 Know these before you plan a run:
 
 - **At most four chemical elements** in the structure.
-- **Student MD** uses a Langevin thermostat at 300 K.
+- **Student MD** uses a Langevin thermostat at 300 K (NVT-like). Another
+  temperature or ensemble is not an option of the current engine.
 - **Boundaries:** the input must be fully periodic (a slab keeps its vacuum
   inside the cell); student MD runs with reflecting walls along z.
 - **Frozen atoms** (`FixAtoms`) are labelled with the teacher's forces but not
@@ -102,9 +123,31 @@ frames you will use to check it.
 :::
 
 :::{exercise} Exercise 2: a quick trial
-Run a quick trial distillation with an installed teacher on a small structure.
+Run a quick trial distillation with an installed teacher on a small copper slab.
 How many rounds did the loop need?
 :::
+
+:::{solution}
+Make the slab with the teacher's interpreter, fixing the two bottom layers:
+
+```bash
+"$PY" - <<'EOF'
+from ase.build import fcc111
+from ase.constraints import FixAtoms
+slab = fcc111("Cu", size=(3, 3, 4), vacuum=10.0, periodic=True)
+slab.set_constraint(FixAtoms(indices=[a.index for a in slab if a.tag >= 3]))
+slab.write("slab.vasp", format="vasp")
+EOF
+```
+
+Then run the quick commands above and count the rounds in `distill/distill.log`.
+:::
+
+## Outlook: reactive systems
+
+Distilling reactive systems, where bonds break and form, is harder: the pool must
+contain the reactive events themselves, not only configurations near equilibrium.
+This is ongoing work and is discussed in the webinar.
 
 :::{keypoints}
 - Distillation turns a large teacher into a small, fast student tailored to your

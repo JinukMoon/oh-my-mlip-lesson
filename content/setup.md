@@ -19,10 +19,32 @@ Each environment pins its own CUDA build, so the minimum NVIDIA driver depends o
 which models you install. Check your driver with `nvidia-smi` and compare it with
 the [host requirements](https://oh-my-mlip.org/host_requirements/).
 
+## Check before you start
+
+```bash
+nvidia-smi            # GPU and driver version (CUDA version at the top right)
+conda --version       # or mamba --version
+df -h .               # free disk where you will put the hub
+```
+
+The first install of a framework downloads several GB of packages and weights,
+so it takes from minutes to tens of minutes depending on your network. Compute
+nodes on clusters often have no internet access (see {doc}`part1-4-hpc`).
+
+## Words used in this lesson
+
+| Word | Example | Meaning |
+|---|---|---|
+| framework | `MACE` | an MLIP code; `install.sh` takes a framework or environment name |
+| environment | `mace` | the conda environment that holds one framework |
+| model | `MACE-MPA-0` | one pretrained checkpoint of a framework; `setup_verify.py` takes a model name |
+| GPU-verified | | the model computed energies and forces on the GPU, the only state that counts as installed |
+
 ## Get the hub
 
-The hub is a git repository. Everything (environments, weights, local records)
-lives inside it.
+The hub is a git repository. Environments and local records live inside it.
+Weights live in each framework's own cache (for example `~/.cache/mace` or
+`~/.cache/huggingface`) or, for some models, under `models/` in the hub.
 
 ```bash
 git clone https://github.com/JinukMoon/oh-my-mlip.git
@@ -58,4 +80,11 @@ run the same steps.
 :::{callout} No agent? No problem.
 Every exercise in this lesson shows the plain command next to the request you
 would give an agent.
+:::
+
+:::{callout} No GPU at hand?
+You can still follow along: read the plan of an install with
+`./install.sh --dry-run <framework>`, list the fine-tuning settings with
+`python scripts/ft_run.py <framework> --show-settings`, and write job scripts with
+`--emit-only` to run later on a GPU cluster.
 :::

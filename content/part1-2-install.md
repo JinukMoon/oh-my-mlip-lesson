@@ -33,8 +33,11 @@ From the hub directory, after `source env.sh`:
 
 `install.sh` runs the same steps every time: create the environment from its
 recipe, install CatBench, prepare the weights, compile what must be compiled for
-your GPU, and mark the environment ready. An interrupted install is checked and
-then adopted or rebuilt, never duplicated.
+your GPU, and mark the environment ready.
+
+If an install is interrupted, run it again: an environment whose imports work is
+kept and finished. If they fail, it stops without deleting anything, and
+`./install.sh --rebuild <env>` deletes that environment and builds it again.
 
 ## Verify on the GPU
 
@@ -42,9 +45,10 @@ then adopted or rebuilt, never duplicated.
 python scripts/setup_verify.py MACE-MPA-0 --json
 ```
 
-The result is one JSON verdict. It passes only if the model computed energies and
-forces on the GPU. Read the verdict as it is; do not judge it from `nvidia-smi`
-yourself.
+The result is one JSON verdict. The model is GPU-verified only if it computed
+energies and forces on the GPU. If the verdict says `degraded: true` and
+`device: cpu`, the NVIDIA driver is older than the environment's CUDA build: the
+model is not ready (see {doc}`troubleshooting`).
 
 ## Replay a verified build exactly
 
@@ -79,7 +83,7 @@ source env.sh
 ./install.sh MACE
 python scripts/setup_verify.py MACE-MPA-0 --json
 ```
-The verdict should report a pass, with energies and forces computed on the GPU.
+The verdict should report a pass on `cuda`, without `degraded: true`.
 :::
 
 :::{exercise} Exercise 2: what will be installed?

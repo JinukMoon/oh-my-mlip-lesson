@@ -40,10 +40,11 @@ spec = resolve("MACE")        # a family, or a version such as "MACE-MH-1-OMAT"
 print(spec["python"])         # the interpreter to run your script with
 print(spec["imports"])        # import lines
 print(spec["inference"])      # the line that creates `calc`
+print(spec["env_run"])        # environment variables to export first (often empty)
 ```
 
-Paste `imports` and `inference` into your script as they are, then run it with
-`spec["python"]`:
+Export the variables in `env_run`, paste `imports` and `inference` into your
+script as they are, then run it with `spec["python"]`:
 
 ```python
 # my_run.py  ->  run with spec["python"]
@@ -90,12 +91,14 @@ calc = DispersionCorrection().apply(calc)
 ## Exercises
 
 :::{exercise} Exercise 1: relax a structure
-Relax a structure of your choice with `MACE-MPA-0` using the ready-made script.
+From the hub directory, make a small copper cell and relax it with MACE using the
+ready-made script. `MACE` resolves to its default model, `MACE-MPA-0`.
 :::
 
 :::{solution}
 ```bash
 PY=$(python -c 'from oh_my_mlip import resolve; print(resolve("MACE")["python"])')
+"$PY" -c "from ase.build import bulk; bulk('Cu', 'fcc', a=3.7, cubic=True).repeat(2).write('POSCAR', format='vasp')"
 "$PY" run_examples/relax.py MACE --structure POSCAR    # writes relaxed.extxyz
 ```
 :::
@@ -106,7 +109,8 @@ MACE using `WorkerPool`. Is the difference what you expected?
 :::
 
 :::{keypoints}
-- `resolve()` returns the interpreter and the exact calculator lines for a model.
+- `resolve()` returns the interpreter, the exact calculator lines and any
+  environment variables a model needs.
 - `run()` and `WorkerPool` are for quick comparisons across environments.
 - Long runs should use `resolve()` inside the model's own environment.
 :::

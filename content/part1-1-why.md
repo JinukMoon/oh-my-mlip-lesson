@@ -33,20 +33,22 @@ Typical problems:
 A crash at least tells you something is wrong. The dangerous cases finish without
 an error:
 
-- The model falls back to the CPU because the CUDA build does not match the
-  driver. It still gives the right numbers, just much more slowly.
+- The model runs on the CPU instead of the GPU. With an NVIDIA driver older than
+  the environment's CUDA build, a few models still run, much more slowly, while
+  most refuse to load.
 - The wrong checkpoint is loaded, for example a different model size or version.
 - A multi-head model computes with a different head than the one you asked for.
-  Some frameworks only print a warning and use a default head when the name is
-  not found.
+  For example, mace-torch only printed a warning for an unknown head name and
+  computed with another head. oh-my-mlip stops with an error when the head
+  actually used differs from the one requested.
 
 ## What oh-my-mlip does
 
 1. **One registry.** `models.json` lists every supported model with its
    environment recipe, where its weights come from, and the exact lines that
    create the ASE calculator.
-2. **Isolated, pinned environments.** Each framework gets its own conda
-   environment, built from a recipe. Every verified build is also recorded in a
+2. **Isolated environments with recorded builds.** Each framework gets its own
+   conda environment, built from a recipe. Every verified build is recorded in a
    lock file, so the same package set can be replayed exactly.
 3. **Verification on the GPU.** A model counts as installed only after it has
    computed energies and forces on the GPU. A clean exit of the install script is

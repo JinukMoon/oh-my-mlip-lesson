@@ -38,10 +38,11 @@ python scripts/ft_verify.py ft_mace/<checkpoint> --model MACE --json
 ## Distill
 
 ```bash
+HUB=$PWD
 "$PY" scripts/distill_bootstrap.py --teacher MACE-MPA-0 --structure slab.vasp \
     --work ./distill --repo <onthefly-distill> --lmp-bin <lmp>
 cd distill && sh run_distill.sh > distill.log 2>&1
-"$PY" scripts/distill_verify.py --work ./distill --json
+"$PY" "$HUB/scripts/distill_verify.py" --work "$PWD" --json   # judged only in production mode
 ```
 
 ## Ask your agent
@@ -55,4 +56,4 @@ cd distill && sh run_distill.sh > distill.log 2>&1
 | Fine-tune | Fine-tune SevenNet-MF-OMPA on my DFT frames for 100 epochs. |
 | Distill | Distill UMA-s-1p2-OMAT into an NN-MTP student for 300 K NVT MD of slab.vasp. |
 
-Full documentation: <https://oh-my-mlip.org>
+If something goes wrong: {doc}`troubleshooting`. Full documentation: <https://oh-my-mlip.org>

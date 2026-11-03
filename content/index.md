@@ -9,13 +9,14 @@ wrong model.
 
 [oh-my-mlip](https://github.com/JinukMoon/oh-my-mlip) is an open-source hub that
 brings the major MLIP frameworks into one registry, installs each in its own
-pinned conda environment, and counts a model as installed only after it computes
+conda environment built from a recipe, and counts a model as installed only after it computes
 energies and forces on the GPU. It can be driven by LLM coding agents such as
 Claude Code and Codex, and every step also runs from the command line.
 
 This lesson accompanies the two-part ENCCS webinar series. Part 1 covers
 installing, running and benchmarking MLIPs. Part 2 covers fine-tuning and
-distillation.
+distillation. Each webinar takes one hour; the times below are for working
+through the material on your own.
 
 :::{prereq}
 
@@ -40,6 +41,7 @@ See {doc}`setup` for details.
 25 min ; {doc}`part2-1-finetune`
 35 min ; {doc}`part2-2-distill`
 10 min ; {doc}`part2-3-choose`
+10 min ; {doc}`troubleshooting`
 ```
 
 ```{toctree}
@@ -74,6 +76,7 @@ part2-3-choose
 :maxdepth: 1
 
 quick-reference
+troubleshooting
 ```
 
 ## Learning outcomes
@@ -99,8 +102,9 @@ By the end of this lesson, learners should be able to:
 
 ## Current scope
 
-oh-my-mlip currently supports Linux x86-64 systems with NVIDIA GPUs. Arm-based
-nodes (such as GH200) and AMD GPUs are not supported yet.
+The oh-my-mlip recipes and lock files are built for Linux x86-64 (`linux-64`
+packages) with NVIDIA GPUs. Arm-based nodes (such as GH200) and AMD GPUs have not
+been tested and are not supported yet.
 
 ## See also
 

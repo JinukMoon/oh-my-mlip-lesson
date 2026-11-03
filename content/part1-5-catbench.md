@@ -50,8 +50,12 @@ You get:
 List the available datasets with:
 
 ```bash
-python3 scripts/catbench_datasets.py --list
+python3 <hub>/scripts/catbench_datasets.py --list
 ```
+
+For a benchmark you will report, pin the CatBench version with
+`--catbench-version` and pass `--expect-models` to the report, so that a missing
+model is caught.
 
 A small file of large molecules can take hours, so try a subset first.
 
@@ -80,6 +84,31 @@ The agent proposes the reaction coefficients (for example, H = adslab - slab -
 1/2 H2) and asks you to confirm them. The conversion runs on a copy; your original
 files are hashed before and checked after.
 
+Without an agent, from the hub directory:
+
+```bash
+# 1. scan: complete and incomplete pairs, proposed coefficients
+python3 scripts/catbench_vasp_stage.py scan --source my_dataset --out stage
+
+# 2. confirm coefficients in a file outside stage/, e.g. coeff_setting.json:
+#    {"H":  {"slab": -1, "adslab": 1, "H2gas": -0.5},
+#     "OH": {"slab": -1, "adslab": 1, "H2Ogas": -1, "H2gas": 0.5}}
+
+# 3. stage: copy what CatBench reads and write the runner
+python3 scripts/catbench_vasp_stage.py stage --source my_dataset --dest stage \
+    --dataset-name my_dataset --coeff coeff_setting.json --python <env>/bin/python
+
+# 4. convert on the copy
+sh stage/run_stage.sh
+
+# 5. verify the originals and the JSON
+python3 scripts/catbench_vasp_stage.py verify --source my_dataset --dest stage
+<env>/bin/python scripts/catbench_datasets.py --check stage/raw_data/my_dataset_adsorption.json
+```
+
+`<env>/bin/python` is the interpreter of any installed environment; every
+environment has CatBench.
+
 ## Exercises
 
 :::{exercise} Exercise 1: a first benchmark
@@ -89,7 +118,8 @@ MAE?
 
 :::{exercise} Exercise 2: two models
 Add a second installed framework with `--only MACE,<framework>` and compare the two
-in the report. Does the ranking change if you add `--d3`?
+in the report. Does the ranking change if you add `--d3`? (D3 needs a CUDA toolkit
+with `nvcc`; check with `nvcc --version`.)
 :::
 
 :::{keypoints}
