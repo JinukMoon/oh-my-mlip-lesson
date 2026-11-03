@@ -153,15 +153,6 @@ intersphinx_mapping = {
 
 import os
 
-if os.environ.get('GITHUB_REF', '') == 'refs/heads/main':
-    html_js_files = [
-        (
-            'https://plausible.io/js/script.js',
-            {
-                "data-domain": f"enccs.github.io/{detected_repo_name}",
-                "defer": "defer"
-            }
-        ),
-    ]
+# (template's ENCCS Plausible override removed: this site uses Google Analytics, see html_js_files above)
 
 
