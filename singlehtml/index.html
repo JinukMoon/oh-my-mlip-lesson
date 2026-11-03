@@ -1,0 +1,1694 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html">
+        <link rel="prefetch" href="_static/ENCCS_logo_light.png" as="image">
+        <link rel="prefetch" href="_static/ENCCS_logo_dark.png" as="image">
+
+    <link rel="shortcut icon" href="_static/favicon.ico"><!-- Generated with Sphinx 8.2.3 and Furo 2025.12.19 -->
+        <title>oh-my-mlip: MLIPs on HPC</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_lesson.css?v=e9df6548" />
+    <link rel="stylesheet" type="text/css" href="_static/term_role_formatting.css?v=4194e21c" />
+    <link rel="stylesheet" type="text/css" href="_static/furo_ext_lesson.css?v=6c0cde2e" />
+    <link rel="stylesheet" type="text/css" href="_static/EN_Co-funded.css?v=bf081b0b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/overrides.css?v=1c72d2de" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">oh-my-mlip: MLIPs on HPC</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/ENCCS_logo_light.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/ENCCS_logo_dark.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">oh-my-mlip: MLIPs on HPC</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Before you start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-setup">Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Part 1 - Installing, running and benchmarking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-1-why">Why installing MLIPs is hard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-2-install">Install and verify a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-3-use">Use a model in your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-4-hpc">Running on GPU clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-5-catbench">Benchmark MLIPs with CatBench</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Part 2 - Fine-tuning and distillation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-part2-1-finetune">Fine-tune a pretrained model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part2-2-distill">Distill a tailored MLIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part2-3-choose">Pretrained, fine-tuned or distilled?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-quick-reference">Quick reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-troubleshooting">Troubleshooting and cleanup</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="oh-my-mlip-machine-learning-interatomic-potentials-on-hpc">
+<h1>oh-my-mlip: Machine-Learning Interatomic Potentials on HPC<a class="headerlink" href="#oh-my-mlip-machine-learning-interatomic-potentials-on-hpc" title="Link to this heading">¶</a></h1>
+<p>Machine-learning interatomic potentials (MLIPs) can approach the accuracy of
+density functional theory (DFT) at a much lower cost, and many pretrained
+“foundation” models are now available. Installing and running them side by side
+is still hard: each framework needs its own PyTorch or TensorFlow, CUDA build and
+accelerated kernels, and a wrong setup can silently run on the CPU or with the
+wrong model.</p>
+<p><a class="reference external" href="https://github.com/JinukMoon/oh-my-mlip">oh-my-mlip</a> is an open-source hub that
+brings the major MLIP frameworks into one registry, installs each in its own
+conda environment built from a recipe, and counts a model as installed only after it computes
+energies and forces on the GPU. It can be driven by LLM coding agents such as
+Claude Code and Codex, and every step also runs from the command line.</p>
+<p>This lesson accompanies the two-part ENCCS webinar series. Part 1 covers
+installing, running and benchmarking MLIPs. Part 2 covers fine-tuning and
+distillation. Each webinar takes one hour; the times below are for working
+through the material on your own.</p>
+<div class="admonition-prerequisites prerequisites admonition" id="prerequisites-0">
+<p class="admonition-title">Prerequisites</p>
+<ul class="simple">
+<li><p>A Linux x86-64 machine or cluster with an NVIDIA GPU</p></li>
+<li><p>conda or mamba on your <code class="docutils literal notranslate"><span class="pre">PATH</span></code></p></li>
+<li><p>Basic familiarity with Linux, Python and the command line</p></li>
+<li><p>For Part 2: basic familiarity with molecular dynamics (MD)</p></li>
+</ul>
+<p>See <a class="reference internal" href="#document-setup"><span class="doc">Setup</span></a> for details.</p>
+</div>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>10 min</p></td>
+<td><p><a class="reference internal" href="#document-setup"><span class="doc">Setup</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>10 min</p></td>
+<td><p><a class="reference internal" href="#document-part1-1-why"><span class="doc">Why installing MLIPs is hard</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>20 min</p></td>
+<td><p><a class="reference internal" href="#document-part1-2-install"><span class="doc">Install and verify a model</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>20 min</p></td>
+<td><p><a class="reference internal" href="#document-part1-3-use"><span class="doc">Use a model in your own work</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>15 min</p></td>
+<td><p><a class="reference internal" href="#document-part1-4-hpc"><span class="doc">Running on GPU clusters</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>25 min</p></td>
+<td><p><a class="reference internal" href="#document-part1-5-catbench"><span class="doc">Benchmark MLIPs with CatBench</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>25 min</p></td>
+<td><p><a class="reference internal" href="#document-part2-1-finetune"><span class="doc">Fine-tune a pretrained model</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>35 min</p></td>
+<td><p><a class="reference internal" href="#document-part2-2-distill"><span class="doc">Distill a tailored MLIP</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>10 min</p></td>
+<td><p><a class="reference internal" href="#document-part2-3-choose"><span class="doc">Pretrained, fine-tuned or distilled?</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>10 min</p></td>
+<td><p><a class="reference internal" href="#document-troubleshooting"><span class="doc">Troubleshooting and cleanup</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-setup"></span><section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Check that your machine can run oh-my-mlip</p></li>
+<li><p>Get the oh-my-mlip hub on your machine, with or without an LLM agent</p></li>
+</ul>
+</div>
+<section id="what-you-need">
+<h3>What you need<a class="headerlink" href="#what-you-need" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Why</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Linux x86-64</p></td>
+<td><p>The recipes and lock files are built for <code class="docutils literal notranslate"><span class="pre">linux-64</span></code> packages</p></td>
+</tr>
+<tr class="row-odd"><td><p>An NVIDIA GPU and driver</p></td>
+<td><p>A model counts as installed only after it computes energies and forces on the GPU</p></td>
+</tr>
+<tr class="row-even"><td><p>conda or mamba on <code class="docutils literal notranslate"><span class="pre">PATH</span></code></p></td>
+<td><p>Every framework gets its own conda environment</p></td>
+</tr>
+<tr class="row-odd"><td><p>Disk space</p></td>
+<td><p>About 5 to 15 GB per installed model (environment plus weights)</p></td>
+</tr>
+<tr class="row-even"><td><p>A Hugging Face account</p></td>
+<td><p>Only for gated models (UMA, eSEN)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each environment pins its own CUDA build, so the minimum NVIDIA driver depends on
+which models you install. Check your driver with <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> and compare it with
+the <a class="reference external" href="https://oh-my-mlip.org/host_requirements/">host requirements</a>.</p>
+</section>
+<section id="check-before-you-start">
+<h3>Check before you start<a class="headerlink" href="#check-before-you-start" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvidia-smi<span class="w">            </span><span class="c1"># GPU and driver version (CUDA version at the top right)</span>
+conda<span class="w"> </span>--version<span class="w">       </span><span class="c1"># or mamba --version</span>
+df<span class="w"> </span>-h<span class="w"> </span>.<span class="w">               </span><span class="c1"># free disk where you will put the hub</span>
+</pre></div>
+</div>
+<p>The first install of a framework downloads several GB of packages and weights,
+so it takes from minutes to tens of minutes depending on your network. Compute
+nodes on clusters often have no internet access (see <a class="reference internal" href="#document-part1-4-hpc"><span class="doc">Running on GPU clusters</span></a>).</p>
+</section>
+<section id="words-used-in-this-lesson">
+<h3>Words used in this lesson<a class="headerlink" href="#words-used-in-this-lesson" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Word</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>framework</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MACE</span></code></p></td>
+<td><p>an MLIP code; <code class="docutils literal notranslate"><span class="pre">install.sh</span></code> takes a framework or environment name</p></td>
+</tr>
+<tr class="row-odd"><td><p>environment</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mace</span></code></p></td>
+<td><p>the conda environment that holds one framework</p></td>
+</tr>
+<tr class="row-even"><td><p>model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MACE-MPA-0</span></code></p></td>
+<td><p>one pretrained checkpoint of a framework; <code class="docutils literal notranslate"><span class="pre">setup_verify.py</span></code> takes a model name</p></td>
+</tr>
+<tr class="row-odd"><td><p>GPU-verified</p></td>
+<td><p></p></td>
+<td><p>the model computed energies and forces on the GPU, the only state that counts as installed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="get-the-hub">
+<h3>Get the hub<a class="headerlink" href="#get-the-hub" title="Link to this heading">¶</a></h3>
+<p>The hub is a git repository. Environments and local records live inside it.
+Weights live in each framework’s own cache (for example <code class="docutils literal notranslate"><span class="pre">~/.cache/mace</span></code> or
+<code class="docutils literal notranslate"><span class="pre">~/.cache/huggingface</span></code>) or, for some models, under <code class="docutils literal notranslate"><span class="pre">models/</span></code> in the hub.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JinukMoon/oh-my-mlip.git
+<span class="nb">cd</span><span class="w"> </span>oh-my-mlip
+<span class="nb">source</span><span class="w"> </span>env.sh
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">env.sh</span></code> sets the cache and CUDA environment variables the scripts expect. Source
+it in every new shell before running anything.</p>
+</section>
+<section id="optional-connect-an-llm-agent">
+<h3>Optional: connect an LLM agent<a class="headerlink" href="#optional-connect-an-llm-agent" title="Link to this heading">¶</a></h3>
+<p>With <strong>Claude Code</strong>, add the plugin once:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/plugin marketplace add JinukMoon/oh-my-mlip
+/plugin install oh-my-mlip@oh-my-mlip
+</pre></div>
+</div>
+<p>On first use, Claude clones the hub into <code class="docutils literal notranslate"><span class="pre">~/.oh-my-mlip</span></code> (or uses
+<code class="docutils literal notranslate"><span class="pre">$OH_MY_MLIP_HOME</span></code> if you set it).</p>
+<p>With <strong>Codex or another agent</strong>, tell it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Clone https://github.com/JinukMoon/oh-my-mlip, read its AGENTS.md and the
+documentation at https://oh-my-mlip.org/, and use it for the MLIP work I ask for.
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> is the contract that any agent follows, so the plugin and other agents
+run the same steps.</p>
+<div class="admonition-no-agent-no-problem callout admonition" id="callout-0">
+<p class="admonition-title">No agent? No problem.</p>
+<p>Every exercise in this lesson shows the plain command next to the request you
+would give an agent.</p>
+</div>
+<div class="admonition-no-gpu-at-hand callout admonition" id="callout-1">
+<p class="admonition-title">No GPU at hand?</p>
+<p>You can still follow along: read the plan of an install with
+<code class="docutils literal notranslate"><span class="pre">./install.sh</span> <span class="pre">--dry-run</span> <span class="pre">&lt;framework&gt;</span></code>, list the fine-tuning settings with
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/ft_run.py</span> <span class="pre">&lt;framework&gt;</span> <span class="pre">--show-settings</span></code>, and write job scripts with
+<code class="docutils literal notranslate"><span class="pre">--emit-only</span></code> to run later on a GPU cluster.</p>
+</div>
+</section>
+</section>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-part1-1-why"></span><section id="why-installing-mlips-is-hard">
+<h2>Why installing MLIPs is hard<a class="headerlink" href="#why-installing-mlips-is-hard" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>Why can’t I install all MLIP frameworks in one environment?</p></li>
+<li><p>What can go wrong without any error message?</p></li>
+<li><p>What does oh-my-mlip do about it?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Name the main sources of MLIP installation failures</p></li>
+<li><p>Understand the three ideas behind oh-my-mlip: one registry, isolated
+environments, and verification on the GPU</p></li>
+</ul>
+</div>
+<section id="one-environment-cannot-hold-them-all">
+<h3>One environment cannot hold them all<a class="headerlink" href="#one-environment-cannot-hold-them-all" title="Link to this heading">¶</a></h3>
+<p>Most MLIP frameworks are built on PyTorch (one, GRACE, on TensorFlow), but each
+release pins its own versions of the deep-learning framework, CUDA and helper
+libraries. Many also need accelerated kernels compiled for a specific GPU
+architecture. Installing two frameworks into one environment usually means one of
+them silently gets a version it was never tested with.</p>
+<p>Typical problems:</p>
+<ul class="simple">
+<li><p>Conflicting PyTorch or CUDA versions between frameworks</p></li>
+<li><p>Kernels compiled for a different GPU architecture than the one you run on</p></li>
+<li><p>NVIDIA drivers too old for the CUDA build in the environment</p></li>
+<li><p>Weights that must be downloaded from different places, some of them gated
+behind a license agreement</p></li>
+</ul>
+</section>
+<section id="silent-errors-are-worse-than-crashes">
+<h3>Silent errors are worse than crashes<a class="headerlink" href="#silent-errors-are-worse-than-crashes" title="Link to this heading">¶</a></h3>
+<p>A crash at least tells you something is wrong. The dangerous cases finish without
+an error:</p>
+<ul class="simple">
+<li><p>The model runs on the CPU instead of the GPU. With an NVIDIA driver older than
+the environment’s CUDA build, a few models still run, much more slowly, while
+most refuse to load.</p></li>
+<li><p>The wrong checkpoint is loaded, for example a different model size or version.</p></li>
+<li><p>A multi-head model computes with a different head than the one you asked for.
+For example, mace-torch only printed a warning for an unknown head name and
+computed with another head. oh-my-mlip stops with an error when the head
+actually used differs from the one requested.</p></li>
+</ul>
+</section>
+<section id="what-oh-my-mlip-does">
+<h3>What oh-my-mlip does<a class="headerlink" href="#what-oh-my-mlip-does" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>One registry.</strong> <code class="docutils literal notranslate"><span class="pre">models.json</span></code> lists every supported model with its
+environment recipe, where its weights come from, and the exact lines that
+create the ASE calculator.</p></li>
+<li><p><strong>Isolated environments with recorded builds.</strong> Each framework gets its own
+conda environment, built from a recipe. Every verified build is recorded in a
+lock file, so the same package set can be replayed exactly.</p></li>
+<li><p><strong>Verification on the GPU.</strong> A model counts as installed only after it has
+computed energies and forces on the GPU. A clean exit of the install script is
+not enough.</p></li>
+</ol>
+<p>The upstream frameworks are run as they are. oh-my-mlip does not reimplement any
+model.</p>
+<div class="admonition-discussion discussion important admonition" id="discussion-0">
+<p class="admonition-title">Discussion</p>
+<p>Have you ever had an MLIP run “successfully” but much slower than expected, or
+with results that did not match a colleague’s? What turned out to be the cause?</p>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>MLIP frameworks need conflicting software stacks, so each one gets its own
+environment.</p></li>
+<li><p>The worst failures are silent: CPU fallback, wrong checkpoint, wrong head.</p></li>
+<li><p>oh-my-mlip treats “computes energies and forces on the GPU” as the definition
+of installed.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<span id="document-part1-2-install"></span><section id="install-and-verify-a-model">
+<h2>Install and verify a model<a class="headerlink" href="#install-and-verify-a-model" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How do I install an MLIP framework with oh-my-mlip?</p></li>
+<li><p>How do I know the installation really works?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Install one framework and verify a model on the GPU</p></li>
+<li><p>Read the verification result</p></li>
+<li><p>Install a gated model</p></li>
+</ul>
+</div>
+<section id="ask-your-agent">
+<h3>Ask your agent<a class="headerlink" href="#ask-your-agent" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Install MACE and check it runs on my GPU.
+</pre></div>
+</div>
+<p>The agent installs the environment, compiles what your GPU needs, and reports the
+model only once it has computed energies and forces there.</p>
+</section>
+<section id="or-run-it-yourself">
+<h3>Or run it yourself<a class="headerlink" href="#or-run-it-yourself" title="Link to this heading">¶</a></h3>
+<p>From the hub directory, after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./install.sh<span class="w"> </span>MACE<span class="w">                      </span><span class="c1"># a framework name or an env name</span>
+./install.sh<span class="w"> </span>MACE<span class="w"> </span>SevenNet<span class="w"> </span>ORB<span class="w">         </span><span class="c1"># several at once</span>
+./install.sh<span class="w"> </span>--dry-run<span class="w"> </span>MACE<span class="w">            </span><span class="c1"># print the plan, install nothing</span>
+./install.sh<span class="w"> </span>--status<span class="w"> </span>MACE<span class="w">             </span><span class="c1"># ready / partial / broken / not installed</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">install.sh</span></code> runs the same steps every time: create the environment from its
+recipe, install CatBench, prepare the weights, compile what must be compiled for
+your GPU, and mark the environment ready.</p>
+<p>If an install is interrupted, run it again: an environment whose imports work is
+kept and finished. If they fail, it stops without deleting anything, and
+<code class="docutils literal notranslate"><span class="pre">./install.sh</span> <span class="pre">--rebuild</span> <span class="pre">&lt;env&gt;</span></code> deletes that environment and builds it again.</p>
+</section>
+<section id="verify-on-the-gpu">
+<h3>Verify on the GPU<a class="headerlink" href="#verify-on-the-gpu" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/setup_verify.py<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--json
+</pre></div>
+</div>
+<p>The result is one JSON verdict. The model is GPU-verified only if it computed
+energies and forces on the GPU. If the verdict says <code class="docutils literal notranslate"><span class="pre">degraded:</span> <span class="pre">true</span></code> and
+<code class="docutils literal notranslate"><span class="pre">device:</span> <span class="pre">cpu</span></code>, the NVIDIA driver is older than the environment’s CUDA build: the
+model is not ready (see <a class="reference internal" href="#document-troubleshooting"><span class="doc">Troubleshooting and cleanup</span></a>).</p>
+</section>
+<section id="replay-a-verified-build-exactly">
+<h3>Replay a verified build exactly<a class="headerlink" href="#replay-a-verified-build-exactly" title="Link to this heading">¶</a></h3>
+<p>Every verified build is recorded in <code class="docutils literal notranslate"><span class="pre">envs/locks/</span></code>. To install exactly that package
+set, with no dependency resolution:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">OMM_USE_LOCK</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./install.sh<span class="w"> </span>MACE
+</pre></div>
+</div>
+</section>
+<section id="gated-models">
+<h3>Gated models<a class="headerlink" href="#gated-models" title="Link to this heading">¶</a></h3>
+<p>UMA and eSEN weights are gated. Accept the license on the model’s Hugging Face
+page with your account, then log in from your own terminal before installing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hf<span class="w"> </span>auth<span class="w"> </span>login
+</pre></div>
+</div>
+<p>An agent should never ask you to paste a token into the chat.</p>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">¶</a></h3>
+<div class="admonition-exercise-1-install-and-verify-mace exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise 1: install and verify MACE</p>
+<p>Install MACE and verify <code class="docutils literal notranslate"><span class="pre">MACE-MPA-0</span></code> on your GPU, either by asking your agent or
+by running the commands yourself.</p>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>env.sh
+./install.sh<span class="w"> </span>MACE
+python<span class="w"> </span>scripts/setup_verify.py<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--json
+</pre></div>
+</div>
+<p>The verdict should report a pass on <code class="docutils literal notranslate"><span class="pre">cuda</span></code>, without <code class="docutils literal notranslate"><span class="pre">degraded:</span> <span class="pre">true</span></code>.</p>
+</div>
+<div class="admonition-exercise-2-what-will-be-installed exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise 2: what will be installed?</p>
+<p>Before installing a second framework, look at its plan without installing
+anything. Which framework would you add next, and why?</p>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-1">
+<p class="admonition-title">Solution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./install.sh<span class="w"> </span>--dry-run<span class="w"> </span>SevenNet
+</pre></div>
+</div>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">install.sh</span></code> builds each framework in its own environment from a recipe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup_verify.py</span></code> is the check that counts: energies and forces on the GPU.</p></li>
+<li><p>Lock files let you replay a verified build exactly.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<span id="document-part1-3-use"></span><section id="use-a-model-in-your-own-work">
+<h2>Use a model in your own work<a class="headerlink" href="#use-a-model-in-your-own-work" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How do I use an installed model in my own script?</p></li>
+<li><p>How can I compare several models quickly?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Get the calculator lines and the interpreter for a model with <code class="docutils literal notranslate"><span class="pre">resolve()</span></code></p></li>
+<li><p>Relax a structure with an MLIP</p></li>
+<li><p>Compare models from one script</p></li>
+</ul>
+</div>
+<p>Every framework lives in its own environment, so a model always runs under that
+environment’s Python interpreter.</p>
+<section id="ask-your-agent">
+<h3>Ask your agent<a class="headerlink" href="#ask-your-agent" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Relax POSCAR with MACE-MPA-0 and give me the relaxed structure.
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write an MD script for this slab that uses SevenNet.
+</pre></div>
+</div>
+<p>The agent takes the calculator lines from the registry and runs your script with
+the right interpreter.</p>
+</section>
+<section id="in-your-own-script-resolve">
+<h3>In your own script: <code class="docutils literal notranslate"><span class="pre">resolve()</span></code><a class="headerlink" href="#in-your-own-script-resolve" title="Link to this heading">¶</a></h3>
+<p>Use this for MD, relaxations and anything long. Copy the lines once; your script
+does not need oh-my-mlip at run time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="p">;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"&lt;path to the hub&gt;"</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">oh_my_mlip</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve</span>
+
+<span class="n">spec</span> <span class="o">=</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">"MACE"</span><span class="p">)</span>        <span class="c1"># a family, or a version such as "MACE-MH-1-OMAT"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"python"</span><span class="p">])</span>         <span class="c1"># the interpreter to run your script with</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"imports"</span><span class="p">])</span>        <span class="c1"># import lines</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"inference"</span><span class="p">])</span>      <span class="c1"># the line that creates `calc`</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="s2">"env_run"</span><span class="p">])</span>        <span class="c1"># environment variables to export first (often empty)</span>
+</pre></div>
+</div>
+<p>Export the variables in <code class="docutils literal notranslate"><span class="pre">env_run</span></code>, paste <code class="docutils literal notranslate"><span class="pre">imports</span></code> and <code class="docutils literal notranslate"><span class="pre">inference</span></code> into your
+script as they are, then run it with <code class="docutils literal notranslate"><span class="pre">spec[&quot;python&quot;]</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># my_run.py  -&gt;  run with spec["python"]</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mace.calculators</span><span class="w"> </span><span class="kn">import</span> <span class="n">mace_mp</span>
+
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s2">"POSCAR"</span><span class="p">)</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">mace_mp</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">'medium-mpa-0'</span><span class="p">,</span> <span class="n">dispersion</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default_dtype</span><span class="o">=</span><span class="s1">'float64'</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">'cuda'</span><span class="p">)</span>
+<span class="n">atoms</span><span class="o">.</span><span class="n">calc</span> <span class="o">=</span> <span class="n">calc</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="across-models-from-one-script">
+<h3>Across models from one script<a class="headerlink" href="#across-models-from-one-script" title="Link to this heading">¶</a></h3>
+<p>For quick comparisons, each model runs in its own environment process, so the
+calling Python needs no model installed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">oh_my_mlip</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">oh_my_mlip</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"MACE"</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>          <span class="c1"># {"energy": ..., "forces": ...}</span>
+
+<span class="k">with</span> <span class="n">oh_my_mlip</span><span class="o">.</span><span class="n">WorkerPool</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>        <span class="c1"># workers stay alive between calls</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"MACE"</span><span class="p">,</span> <span class="s2">"SevenNet"</span><span class="p">):</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">resp</span><span class="p">[</span><span class="s2">"results"</span><span class="p">][</span><span class="s2">"energy"</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Every call crosses a process boundary, so use <code class="docutils literal notranslate"><span class="pre">resolve()</span></code> for MD loops.</p>
+</section>
+<section id="d3-dispersion">
+<h3>D3 dispersion<a class="headerlink" href="#d3-dispersion" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">oh_my_mlip</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">"MACE"</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">apply_d3</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or, inside the model’s environment:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">catbench.dispersion</span><span class="w"> </span><span class="kn">import</span> <span class="n">DispersionCorrection</span>
+<span class="n">calc</span> <span class="o">=</span> <span class="n">DispersionCorrection</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">calc</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">¶</a></h3>
+<div class="admonition-exercise-1-relax-a-structure exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise 1: relax a structure</p>
+<p>From the hub directory, make a small copper cell and relax it with MACE using the
+ready-made script. <code class="docutils literal notranslate"><span class="pre">MACE</span></code> resolves to its default model, <code class="docutils literal notranslate"><span class="pre">MACE-MPA-0</span></code>.</p>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PY</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">'from oh_my_mlip import resolve; print(resolve("MACE")["python"])'</span><span class="k">)</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span>-c<span class="w"> </span><span class="s2">"from ase.build import bulk; bulk('Cu', 'fcc', a=3.7, cubic=True).repeat(2).write('POSCAR', format='vasp')"</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span>run_examples/relax.py<span class="w"> </span>MACE<span class="w"> </span>--structure<span class="w"> </span>POSCAR<span class="w">    </span><span class="c1"># writes relaxed.extxyz</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-exercise-2-compare-two-models exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise 2: compare two models</p>
+<p>Install a second framework and compare its energy for the same structure with
+MACE using <code class="docutils literal notranslate"><span class="pre">WorkerPool</span></code>. Is the difference what you expected?</p>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">resolve()</span></code> returns the interpreter, the exact calculator lines and any
+environment variables a model needs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run()</span></code> and <code class="docutils literal notranslate"><span class="pre">WorkerPool</span></code> are for quick comparisons across environments.</p></li>
+<li><p>Long runs should use <code class="docutils literal notranslate"><span class="pre">resolve()</span></code> inside the model’s own environment.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<span id="document-part1-4-hpc"></span><section id="running-on-gpu-clusters">
+<h2>Running on GPU clusters<a class="headerlink" href="#running-on-gpu-clusters" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>What changes when I move from a workstation to a Slurm cluster?</p></li>
+<li><p>How do I prepare jobs instead of running them directly?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Know which steps depend on the GPU you install on</p></li>
+<li><p>Write Slurm job scripts for CatBench and fine-tuning without submitting them</p></li>
+</ul>
+</div>
+<section id="install-where-you-will-compute">
+<h3>Install where you will compute<a class="headerlink" href="#install-where-you-will-compute" title="Link to this heading">¶</a></h3>
+<p>Some frameworks compile kernels for the GPU they are installed on (NequIP and
+SevenNet with OpenEquivariance, Allegro with CuEquivariance, and the D3 kernel). Verification
+also needs a GPU. On a cluster, run the installation inside a GPU job or an
+interactive GPU session, on the same kind of GPU you will use for production.</p>
+<p>To prepare NequIP or Allegro jobs for a different GPU architecture, pass it
+explicitly, for example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">resolve</span><span class="p">(</span><span class="s2">"NequIP"</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="s2">"sm86"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="things-to-check-on-a-cluster">
+<h3>Things to check on a cluster<a class="headerlink" href="#things-to-check-on-a-cluster" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Internet access.</strong> Compute nodes often have none. Weights must be fetched
+where the network works, before the jobs start.</p></li>
+<li><p><strong>Disk.</strong> About 5 to 15 GB per model. Put the hub on a filesystem that compute
+nodes can read, with enough quota.</p></li>
+<li><p><strong>Drivers.</strong> Each environment pins its own CUDA build; check that the cluster’s
+NVIDIA driver is new enough for the models you need.</p></li>
+<li><p><strong>Speed tests.</strong> Keep benchmark output on fast local storage. Writing every step
+to a slow network filesystem can make a model look slower than it is.</p></li>
+</ul>
+</section>
+<section id="write-job-scripts-submit-yourself">
+<h3>Write job scripts, submit yourself<a class="headerlink" href="#write-job-scripts-submit-yourself" title="Link to this heading">¶</a></h3>
+<p>The CatBench and fine-tuning tools can write Slurm scripts without running them:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>run_examples/catbench_quickstart.py<span class="w"> </span>MamunHighT2019<span class="w"> </span>--only<span class="w"> </span>MACE<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--slurm<span class="w"> </span>--emit-only<span class="w"> </span>--partition<span class="w"> </span>&lt;partition&gt;
+python<span class="w"> </span>scripts/ft_run.py<span class="w"> </span>MACE<span class="w"> </span>--dataset<span class="w"> </span>frames.traj<span class="w"> </span>--out<span class="w"> </span>ft_mace<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--slurm<span class="w"> </span>--partition<span class="w"> </span>&lt;partition&gt;
+</pre></div>
+</div>
+<p>The generated header sets only the job name, partition, log files, one task and
+one GPU. Wall time, memory, CPUs and account are left to your cluster’s defaults,
+so add them before submitting if those defaults do not suit.</p>
+<div class="admonition-discussion discussion important admonition" id="discussion-0">
+<p class="admonition-title">Discussion</p>
+<p>On your cluster, where would you keep the hub: in your home directory, on a
+project filesystem, or on scratch? What are the trade-offs?</p>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Install and verify on the same kind of GPU you will run on.</p></li>
+<li><p>Fetch weights where the network works; compute nodes often have no internet.</p></li>
+<li><p>Let the tools write job scripts, then add your cluster’s resources and submit.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<span id="document-part1-5-catbench"></span><section id="benchmark-mlips-with-catbench">
+<h2>Benchmark MLIPs with CatBench<a class="headerlink" href="#benchmark-mlips-with-catbench" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How well do different MLIPs reproduce DFT adsorption energies?</p></li>
+<li><p>How can I benchmark models on my own DFT data?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Run a small CatBench benchmark and read its report</p></li>
+<li><p>Turn your own VASP calculations into a CatBench dataset</p></li>
+</ul>
+</div>
+<p><a class="reference external" href="https://github.com/JinukMoon/catbench">CatBench</a> benchmarks MLIPs on adsorption
+energies in heterogeneous catalysis. It is installed in every oh-my-mlip
+environment.</p>
+<section id="ask-your-agent">
+<h3>Ask your agent<a class="headerlink" href="#ask-your-agent" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Benchmark MACE, SevenNet and UMA on adsorption energies for CO2 reduction on Cu, with D3.
+</pre></div>
+</div>
+<p>The agent asks which dataset (or recommends a published one), which models,
+whether to add D3, and whether this is a new benchmark or a rerun.</p>
+</section>
+<section id="or-run-it-yourself">
+<h3>Or run it yourself<a class="headerlink" href="#or-run-it-yourself" title="Link to this heading">¶</a></h3>
+<p>A first run, 20 small-adsorbate reactions with one model, takes a few minutes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>my_benchmark<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my_benchmark
+python<span class="w"> </span>&lt;hub&gt;/run_examples/catbench_quickstart.py<span class="w"> </span>MamunHighT2019<span class="w"> </span>--only<span class="w"> </span>MACE<span class="w"> </span>--max-reactions<span class="w"> </span><span class="m">20</span>
+python<span class="w"> </span>&lt;hub&gt;/scripts/catbench_report.py<span class="w"> </span>--result<span class="w"> </span>./result<span class="w"> </span>--out<span class="w"> </span>./report
+</pre></div>
+</div>
+<p>You get:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">jobs/</span></code>: one rerunnable job script per model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">result/</span></code>: CatBench results for every model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">report/</span></code>: the MAE table and plot, and an analysis workbook</p></li>
+</ul>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Effect</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--only</span> <span class="pre">MACE,SevenNet</span></code></p></td>
+<td><p>frameworks to run</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--max-reactions</span> <span class="pre">N</span></code></p></td>
+<td><p>only the first N reactions (the report marks it as a subset)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--d3</span></code></p></td>
+<td><p>add D3 dispersion</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--calc-num</span> <span class="pre">N</span></code></p></td>
+<td><p>calculator instances per model (use 1 for large models on a small GPU)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--slurm</span> <span class="pre">--emit-only</span> <span class="pre">--partition</span> <span class="pre">&lt;p&gt;</span></code></p></td>
+<td><p>write Slurm scripts without running them</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>List the available datasets with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>&lt;hub&gt;/scripts/catbench_datasets.py<span class="w"> </span>--list
+</pre></div>
+</div>
+<p>For a benchmark you will report, pin the CatBench version with
+<code class="docutils literal notranslate"><span class="pre">--catbench-version</span></code> and pass <code class="docutils literal notranslate"><span class="pre">--expect-models</span></code> to the report, so that a missing
+model is caught.</p>
+<p>A small file of large molecules can take hours, so try a subset first.</p>
+</section>
+<section id="your-own-vasp-data">
+<h3>Your own VASP data<a class="headerlink" href="#your-own-vasp-data" title="Link to this heading">¶</a></h3>
+<p>Lay out finished calculations, each with a <code class="docutils literal notranslate"><span class="pre">CONTCAR</span></code> and an <code class="docutils literal notranslate"><span class="pre">OSZICAR</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my_dataset/
+├── Pt111/          # one directory per surface
+│   ├── slab/       # the clean slab
+│   ├── H/          # one directory per adsorbate
+│   └── OH/
+└── gas/
+    ├── H2gas/      # one directory per gas reference
+    └── H2Ogas/
+</pre></div>
+</div>
+<p>Then ask:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Turn my VASP calculations in ./my_dataset into a CatBench dataset called my_dataset.
+</pre></div>
+</div>
+<p>The agent proposes the reaction coefficients (for example, H = adslab - slab -
+1/2 H2) and asks you to confirm them. The conversion runs on a copy; your original
+files are hashed before and checked after.</p>
+<p>Without an agent, from the hub directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. scan: complete and incomplete pairs, proposed coefficients</span>
+python3<span class="w"> </span>scripts/catbench_vasp_stage.py<span class="w"> </span>scan<span class="w"> </span>--source<span class="w"> </span>my_dataset<span class="w"> </span>--out<span class="w"> </span>stage
+
+<span class="c1"># 2. confirm coefficients in a file outside stage/, e.g. coeff_setting.json:</span>
+<span class="c1">#    {"H":  {"slab": -1, "adslab": 1, "H2gas": -0.5},</span>
+<span class="c1">#     "OH": {"slab": -1, "adslab": 1, "H2Ogas": -1, "H2gas": 0.5}}</span>
+
+<span class="c1"># 3. stage: copy what CatBench reads and write the runner</span>
+python3<span class="w"> </span>scripts/catbench_vasp_stage.py<span class="w"> </span>stage<span class="w"> </span>--source<span class="w"> </span>my_dataset<span class="w"> </span>--dest<span class="w"> </span>stage<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset-name<span class="w"> </span>my_dataset<span class="w"> </span>--coeff<span class="w"> </span>coeff_setting.json<span class="w"> </span>--python<span class="w"> </span>&lt;env&gt;/bin/python
+
+<span class="c1"># 4. convert on the copy</span>
+sh<span class="w"> </span>stage/run_stage.sh
+
+<span class="c1"># 5. verify the originals and the JSON</span>
+python3<span class="w"> </span>scripts/catbench_vasp_stage.py<span class="w"> </span>verify<span class="w"> </span>--source<span class="w"> </span>my_dataset<span class="w"> </span>--dest<span class="w"> </span>stage
+&lt;env&gt;/bin/python<span class="w"> </span>scripts/catbench_datasets.py<span class="w"> </span>--check<span class="w"> </span>stage/raw_data/my_dataset_adsorption.json
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;env&gt;/bin/python</span></code> is the interpreter of any installed environment; every
+environment has CatBench.</p>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">¶</a></h3>
+<div class="admonition-exercise-1-a-first-benchmark exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise 1: a first benchmark</p>
+<p>Run the 20-reaction benchmark above with MACE and open the report. What is the
+MAE?</p>
+</div>
+<div class="admonition-exercise-2-two-models exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise 2: two models</p>
+<p>Add a second installed framework with <code class="docutils literal notranslate"><span class="pre">--only</span> <span class="pre">MACE,&lt;framework&gt;</span></code> and compare the two
+in the report. Does the ranking change if you add <code class="docutils literal notranslate"><span class="pre">--d3</span></code>? (D3 needs a CUDA toolkit
+with <code class="docutils literal notranslate"><span class="pre">nvcc</span></code>; check with <code class="docutils literal notranslate"><span class="pre">nvcc</span> <span class="pre">--version</span></code>.)</p>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>CatBench compares MLIPs with DFT adsorption energies, one rerunnable job per
+model.</p></li>
+<li><p>Start with a subset; run time depends on molecule size, not file size.</p></li>
+<li><p>Your own VASP data can become a dataset without touching the originals.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-part2-1-finetune"></span><section id="fine-tune-a-pretrained-model">
+<h2>Fine-tune a pretrained model<a class="headerlink" href="#fine-tune-a-pretrained-model" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>When is fine-tuning a pretrained MLIP worth it?</p></li>
+<li><p>How do I fine-tune different frameworks without learning each trainer?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Prepare a DFT dataset for fine-tuning</p></li>
+<li><p>Inspect the settings a framework really has</p></li>
+<li><p>Fine-tune a model and check that the result reloads and runs</p></li>
+</ul>
+</div>
+<div class="admonition-starting-with-part-2 callout admonition" id="callout-0">
+<p class="admonition-title">Starting with Part 2?</p>
+<p>You need the hub (<a class="reference internal" href="#document-setup"><span class="doc">Setup</span></a>) and one GPU-verified model (<a class="reference internal" href="#document-part1-2-install"><span class="doc">Install and verify a model</span></a>).</p>
+</div>
+<p>Pretrained models are trained on large, general datasets. For a specific system,
+such as one catalyst surface or one electrolyte, fine-tuning on your own DFT data
+can improve accuracy where it matters for you.</p>
+<section id="one-workflow-each-framework-s-own-trainer">
+<h3>One workflow, each framework’s own trainer<a class="headerlink" href="#one-workflow-each-framework-s-own-trainer" title="Link to this heading">¶</a></h3>
+<p>Every framework fine-tunes differently: MACE takes command-line flags, NequIP and
+SevenNet read YAML configs, DeePMD reads <code class="docutils literal notranslate"><span class="pre">input.json</span></code>, and each expects its own
+dataset layout. oh-my-mlip converts your data to that framework’s format, writes
+the framework’s own config and command, and runs the upstream trainer. Nothing is
+reimplemented.</p>
+<p>Which models can be fine-tuned is listed in
+<a class="reference external" href="https://oh-my-mlip.org/finetune/">Fine-tuning per framework</a>.</p>
+</section>
+<section id="ask-your-agent">
+<h3>Ask your agent<a class="headerlink" href="#ask-your-agent" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Fine-tune MACE on frames.traj - just a quick check that fine-tuning works.
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Fine-tune SevenNet-MF-OMPA on my DFT frames for 100 epochs.
+</pre></div>
+</div>
+<p>The agent first reads which settings the framework really has (DeePMD counts
+steps instead of epochs, not every trainer has EMA or early stopping), then asks
+for the exact variant, the training length, batch size, learning rate and loss
+weights, and the output directory. Every value comes from you, from the
+framework’s official fine-tuning example, or from its upstream default, and the
+run records which one it was.</p>
+</section>
+<section id="or-run-it-yourself">
+<h3>Or run it yourself<a class="headerlink" href="#or-run-it-yourself" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/ft_run.py<span class="w"> </span>MACE<span class="w"> </span>--show-settings<span class="w">      </span><span class="c1"># the settings this framework has</span>
+python<span class="w"> </span>scripts/ft_run.py<span class="w"> </span>MACE<span class="w"> </span>--dataset<span class="w"> </span>frames.traj<span class="w"> </span>--out<span class="w"> </span>ft_mace<span class="w"> </span>--epochs<span class="w"> </span><span class="m">50</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">0</span>
+python<span class="w"> </span>scripts/ft_verify.py<span class="w"> </span>ft_mace/&lt;checkpoint&gt;<span class="w"> </span>--model<span class="w"> </span>MACE<span class="w"> </span>--json
+</pre></div>
+</div>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Effect</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--show-settings</span></code></p></td>
+<td><p>list native settings, their defaults and official fine-tuning values</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--epochs</span></code>, <code class="docutils literal notranslate"><span class="pre">--max-steps</span></code>, <code class="docutils literal notranslate"><span class="pre">--batch-size</span></code>, <code class="docutils literal notranslate"><span class="pre">--lr</span></code></p></td>
+<td><p>training length, batch size, learning rate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--energy-weight</span></code>, <code class="docutils literal notranslate"><span class="pre">--force-weight</span></code>, <code class="docutils literal notranslate"><span class="pre">--stress-weight</span></code></p></td>
+<td><p>loss weights</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--version</span> <span class="pre">MACE-MH-1-OMAT</span></code></p></td>
+<td><p>start from a specific checkpoint</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--emit-only</span></code></p></td>
+<td><p>write the dataset, config and command without running</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--slurm</span> <span class="pre">--partition</span> <span class="pre">&lt;p&gt;</span></code></p></td>
+<td><p>also write a Slurm script (nothing is submitted)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="good-practice">
+<h3>Good practice<a class="headerlink" href="#good-practice" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Split by what you want to test.</strong> If the question is “does the model work for
+a composition it has not seen?”, hold out whole compositions, not random
+frames.</p></li>
+<li><p><strong>Keep the gas references.</strong> If you compute reaction energies, include the gas
+molecules in the training data, because the model’s own gas energies enter
+every reaction energy.</p></li>
+<li><p><strong>Compare with the same budget.</strong> When comparing frameworks, give each the same
+GPU time or number of steps, and report the official defaults separately.</p></li>
+<li><p><strong>Check the license.</strong> A model fine-tuned from a non-commercial checkpoint
+inherits its terms.</p></li>
+</ul>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">¶</a></h3>
+<div class="admonition-exercise-1-read-the-settings exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise 1: read the settings</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">--show-settings</span></code> for two frameworks. Which settings does one have that the
+other does not?</p>
+</div>
+<div class="admonition-exercise-2-a-short-fine-tuning-run exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise 2: a short fine-tuning run</p>
+<p>Fine-tune MACE on a small dataset for a few epochs, then verify the checkpoint.
+Use your own DFT frames, or make a toy dataset with ASE’s EMT potential. Toy data
+only exercises the pipeline; it says nothing about accuracy.</p>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PY</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">'from oh_my_mlip import resolve; print(resolve("MACE")["python"])'</span><span class="k">)</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+<span class="s">from ase.build import bulk</span>
+<span class="s">from ase.calculators.emt import EMT</span>
+<span class="s">from ase.io import write</span>
+<span class="s">frames = []</span>
+<span class="s">for i in range(40):</span>
+<span class="s">    atoms = bulk("Cu", "fcc", a=3.6, cubic=True).repeat(2)</span>
+<span class="s">    atoms.rattle(0.05, seed=i)</span>
+<span class="s">    atoms.calc = EMT()</span>
+<span class="s">    atoms.get_potential_energy(); atoms.get_forces()</span>
+<span class="s">    frames.append(atoms)</span>
+<span class="s">write("frames.extxyz", frames)</span>
+<span class="s">EOF</span>
+python<span class="w"> </span>scripts/ft_run.py<span class="w"> </span>MACE<span class="w"> </span>--dataset<span class="w"> </span>frames.extxyz<span class="w"> </span>--out<span class="w"> </span>ft_mace<span class="w"> </span>--epochs<span class="w"> </span><span class="m">5</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">0</span>
+python<span class="w"> </span>scripts/ft_verify.py<span class="w"> </span>ft_mace/&lt;checkpoint&gt;<span class="w"> </span>--model<span class="w"> </span>MACE<span class="w"> </span>--json
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;checkpoint&gt;</span></code> is the checkpoint file in the output directory; <code class="docutils literal notranslate"><span class="pre">ft_run.json</span></code> there
+records what was run.</p>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ft_run.py</span></code> drives each framework’s own trainer behind one interface.</p></li>
+<li><p>Look at the real settings first; frameworks differ.</p></li>
+<li><p>Design the train and test split around the question you want to answer.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<span id="document-part2-2-distill"></span><section id="distill-a-tailored-mlip">
+<h2>Distill a tailored MLIP<a class="headerlink" href="#distill-a-tailored-mlip" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>How can I run long or large MD when a foundation model is too slow?</p></li>
+<li><p>How does distillation make a small model that is accurate for my system?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Explain the teacher-student idea and on-the-fly active learning</p></li>
+<li><p>Set up a distillation run from an installed model</p></li>
+<li><p>Know what the current engine fixes and what it lets you choose</p></li>
+</ul>
+</div>
+<section id="teacher-and-student">
+<h3>Teacher and student<a class="headerlink" href="#teacher-and-student" title="Link to this heading">¶</a></h3>
+<p>Large foundation models are accurate across chemistry, but they need GPUs and are
+slow for long or large MD. Distillation trains a <strong>small, fast student</strong> to
+reproduce a <strong>large teacher</strong> on the structures that matter for your simulation.</p>
+<p>In oh-my-mlip, the student is an <strong>NN-MTP</strong> potential. It has a LAMMPS pair style
+(<code class="docutils literal notranslate"><span class="pre">nnmtp</span></code>), so the student runs MD on CPU nodes with no Python or LibTorch at run
+time. Any installed model can be the teacher.</p>
+<p>The loop is on-the-fly active learning, run by the
+<a class="reference external" href="https://github.com/JinukMoon/onthefly-distill">onthefly-distill</a> engine:</p>
+<ol class="arabic simple">
+<li><p>The teacher labels a pool of structures (energies and forces).</p></li>
+<li><p>The student is trained on the pool.</p></li>
+<li><p>The student runs MD in LAMMPS.</p></li>
+<li><p>Where the student breaks down, the teacher labels those structures and they
+are added to the pool.</p></li>
+<li><p>Repeat until the student stays stable for the MD length you need.</p></li>
+</ol>
+<p>The result is a tailored MLIP for your own system: small, fast, and accurate
+where it matters for your simulations.</p>
+</section>
+<section id="splitting-gpu-and-cpu-work">
+<h3>Splitting GPU and CPU work<a class="headerlink" href="#splitting-gpu-and-cpu-work" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>Where it runs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Teacher labels</p></td>
+<td><p>GPU (the foundation model)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Student training</p></td>
+<td><p>GPU</p></td>
+</tr>
+<tr class="row-even"><td><p>Student MD and production runs</p></td>
+<td><p>CPU nodes, in LAMMPS</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This split is useful on HPC: a small GPU allocation builds the student, and the
+long production MD runs on CPU partitions.</p>
+</section>
+<section id="ask-your-agent">
+<h3>Ask your agent<a class="headerlink" href="#ask-your-agent" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Distill UMA-s-1p2-OMAT into an NN-MTP student for 300 K NVT MD of slab.vasp.
+</pre></div>
+</div>
+<p>The agent asks for the teacher, how long the student must stay stable, whether
+this is a quick trial or a production run with accuracy targets, and where LAMMPS
+and the engine are.</p>
+</section>
+<section id="or-run-it-yourself">
+<h3>Or run it yourself<a class="headerlink" href="#or-run-it-yourself" title="Link to this heading">¶</a></h3>
+<p>From the hub directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HUB</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="nv">PY</span><span class="o">=</span><span class="k">$(</span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import oh_my_mlip; print(oh_my_mlip.resolve('MACE-MPA-0')['python'])"</span><span class="k">)</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JinukMoon/onthefly-distill.git<span class="w"> </span>../onthefly-distill<span class="w">   </span><span class="c1"># once</span>
+scripts/build_lammps_nnmtp.sh<span class="w"> </span>--repo<span class="w"> </span>../onthefly-distill<span class="w">                            </span><span class="c1"># once</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span>scripts/distill_bootstrap.py<span class="w"> </span>--teacher<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--structure<span class="w"> </span>slab.vasp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--work<span class="w"> </span>./distill<span class="w"> </span>--repo<span class="w"> </span>../onthefly-distill<span class="w"> </span>--lmp-bin<span class="w"> </span>&lt;lmp&gt;
+<span class="nb">cd</span><span class="w"> </span>distill<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sh<span class="w"> </span>run_distill.sh<span class="w"> </span>&gt;<span class="w"> </span>distill.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;lmp&gt;</span></code> is the LAMMPS binary with the NN-MTP pair style. This quick run only
+exercises the loop; it says nothing about the student’s accuracy.</p>
+<p>For a student you will actually use, run in production mode with explicit
+targets (values in <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span></code> are yours to choose), again from the hub directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="s2">"</span><span class="nv">$HUB</span><span class="s2">"</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$HUB</span><span class="s2">/scripts/distill_bootstrap.py"</span><span class="w"> </span>--teacher<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--structure<span class="w"> </span>slab.vasp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--work<span class="w"> </span>./distill_prod<span class="w"> </span>--repo<span class="w"> </span>../onthefly-distill<span class="w"> </span>--lmp-bin<span class="w"> </span>&lt;lmp&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--acceptance<span class="w"> </span>--mode<span class="w"> </span>production<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--energy-mae-max<span class="w"> </span>&lt;meV/atom&gt;<span class="w"> </span>--force-mae-max<span class="w"> </span>&lt;meV/A&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--target-ps<span class="w"> </span>&lt;stable<span class="w"> </span>MD<span class="w"> </span>length,<span class="w"> </span>ps&gt;<span class="w"> </span>--max-iter<span class="w"> </span>&lt;AL<span class="w"> </span>rounds&gt;<span class="w"> </span>--no-progress-limit<span class="w"> </span>&lt;rounds&gt;
+</pre></div>
+</div>
+<p>and check the verdict, which needs both held-out accuracy and a stable LAMMPS run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$HUB</span><span class="s2">/scripts/distill_verify.py"</span><span class="w"> </span>--work<span class="w"> </span>./distill_prod<span class="w"> </span>--json
+</pre></div>
+</div>
+<p>Held-out frames you supply with <code class="docutils literal notranslate"><span class="pre">--heldout-file</span></code> must lie within the
+compositions the pool spans.</p>
+</section>
+<section id="what-the-current-engine-fixes">
+<h3>What the current engine fixes<a class="headerlink" href="#what-the-current-engine-fixes" title="Link to this heading">¶</a></h3>
+<p>Know these before you plan a run:</p>
+<ul class="simple">
+<li><p><strong>At most four chemical elements</strong> in the structure.</p></li>
+<li><p><strong>Student MD</strong> uses a Langevin thermostat at 300 K (NVT-like). Another
+temperature or ensemble is not an option of the current engine.</p></li>
+<li><p><strong>Boundaries:</strong> the input must be fully periodic (a slab keeps its vacuum
+inside the cell); student MD runs with reflecting walls along z.</p></li>
+<li><p><strong>Frozen atoms</strong> (<code class="docutils literal notranslate"><span class="pre">FixAtoms</span></code>) are labelled with the teacher’s forces but not
+trained on.</p></li>
+<li><p><strong>Several compositions:</strong> if the student must work for different compositions
+(for example, a slab with different numbers of water molecules), seed the pool
+with all of them. One composition alone fixes only its own total energy.</p></li>
+</ul>
+<div class="admonition-accuracy-is-relative-to-the-teacher callout admonition" id="callout-0">
+<p class="admonition-title">Accuracy is relative to the teacher</p>
+<p>A student learns to reproduce its teacher on your system. It is not more accurate
+than the teacher, and it is only reliable within the kinds of structures it was
+trained on. Always check held-out errors against the teacher.</p>
+</div>
+</section>
+<section id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">¶</a></h3>
+<div class="admonition-exercise-1-plan-a-distillation exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise 1: plan a distillation</p>
+<p>For a system from your own research, decide: which teacher, which structures to
+seed the pool with, how long the student must stay stable, and which held-out
+frames you will use to check it.</p>
+</div>
+<div class="admonition-exercise-2-a-quick-trial exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise 2: a quick trial</p>
+<p>Run a quick trial distillation with an installed teacher on a small copper slab.
+How many rounds did the loop need?</p>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<p>Make the slab with the teacher’s interpreter, fixing the two bottom layers:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+<span class="s">from ase.build import fcc111</span>
+<span class="s">from ase.constraints import FixAtoms</span>
+<span class="s">slab = fcc111("Cu", size=(3, 3, 4), vacuum=10.0, periodic=True)</span>
+<span class="s">slab.set_constraint(FixAtoms(indices=[a.index for a in slab if a.tag &gt;= 3]))</span>
+<span class="s">slab.write("slab.vasp", format="vasp")</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p>Then run the quick commands above and count the rounds in <code class="docutils literal notranslate"><span class="pre">distill/distill.log</span></code>.</p>
+</div>
+</section>
+<section id="outlook-reactive-systems">
+<h3>Outlook: reactive systems<a class="headerlink" href="#outlook-reactive-systems" title="Link to this heading">¶</a></h3>
+<p>Distilling reactive systems, where bonds break and form, is harder: the pool must
+contain the reactive events themselves, not only configurations near equilibrium.
+This is ongoing work and is discussed in the webinar.</p>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Distillation turns a large teacher into a small, fast student tailored to your
+system.</p></li>
+<li><p>Active learning adds teacher labels exactly where the student fails.</p></li>
+<li><p>Teacher work runs on GPUs; the student’s production MD runs on CPU nodes.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<span id="document-part2-3-choose"></span><section id="pretrained-fine-tuned-or-distilled">
+<h2>Pretrained, fine-tuned or distilled?<a class="headerlink" href="#pretrained-fine-tuned-or-distilled" title="Link to this heading">¶</a></h2>
+<div class="admonition-questions questions admonition" id="questions-0">
+<p class="admonition-title">Questions</p>
+<ul class="simple">
+<li><p>Which kind of model should I use for my project?</p></li>
+</ul>
+</div>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Weigh accuracy, cost and speed when choosing a model</p></li>
+</ul>
+</div>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Pretrained</p></th>
+<th class="head"><p>Fine-tuned</p></th>
+<th class="head"><p>Distilled</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Setup effort</p></td>
+<td><p>Install and verify</p></td>
+<td><p>Your DFT data plus a training run</p></td>
+<td><p>A teacher, a seed structure and an active-learning loop</p></td>
+</tr>
+<tr class="row-odd"><td><p>Accuracy for your system</p></td>
+<td><p>Depends on the training data</p></td>
+<td><p>Can improve on your system</p></td>
+<td><p>Close to the teacher, within what it was trained on</p></td>
+</tr>
+<tr class="row-even"><td><p>Speed</p></td>
+<td><p>GPU, model-dependent</p></td>
+<td><p>Same as the pretrained model</p></td>
+<td><p>Fast, runs on CPU nodes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Generality</p></td>
+<td><p>Broad</p></td>
+<td><p>Narrower</p></td>
+<td><p>Narrowest</p></td>
+</tr>
+<tr class="row-even"><td><p>Best for</p></td>
+<td><p>Screening, first tests</p></td>
+<td><p>Higher accuracy on a specific system</p></td>
+<td><p>Long or large MD of a specific system</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A common path:</p>
+<ol class="arabic simple">
+<li><p><strong>Benchmark</strong> several pretrained models on data close to your problem
+(CatBench, Part 1).</p></li>
+<li><p><strong>Fine-tune</strong> the best one if its errors matter for your conclusions.</p></li>
+<li><p><strong>Distill</strong> the result into a student when you need long or large MD.</p></li>
+</ol>
+<div class="admonition-discussion discussion important admonition" id="discussion-0">
+<p class="admonition-title">Discussion</p>
+<p>For your current project, where would you stop on this path, and what would
+convince you to go one step further?</p>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Start from benchmarks on data close to your problem.</p></li>
+<li><p>Fine-tune for accuracy; distill for speed.</p></li>
+<li><p>Always check the final model against held-out reference data.</p></li>
+</ul>
+</div>
+</section>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-quick-reference"></span><section id="quick-reference">
+<h2>Quick reference<a class="headerlink" href="#quick-reference" title="Link to this heading">¶</a></h2>
+<p>All commands run from the hub directory after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env.sh</span></code>.</p>
+<section id="install-and-verify">
+<h3>Install and verify<a class="headerlink" href="#install-and-verify" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./install.sh<span class="w"> </span>MACE<span class="w">                                   </span><span class="c1"># install a framework</span>
+./install.sh<span class="w"> </span>--status<span class="w"> </span>MACE<span class="w">                          </span><span class="c1"># ready / partial / broken / not installed</span>
+python<span class="w"> </span>scripts/setup_verify.py<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--json<span class="w">    </span><span class="c1"># energies and forces on the GPU</span>
+<span class="nv">OMM_USE_LOCK</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./install.sh<span class="w"> </span>MACE<span class="w">                    </span><span class="c1"># replay a verified build exactly</span>
+</pre></div>
+</div>
+</section>
+<section id="use-a-model">
+<h3>Use a model<a class="headerlink" href="#use-a-model" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">oh_my_mlip</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve</span><span class="p">,</span> <span class="n">run</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">"MACE"</span><span class="p">)</span>           <span class="c1"># spec["python"], spec["imports"], spec["inference"]</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="s2">"MACE"</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>          <span class="c1"># one-shot energy and forces from any Python</span>
+</pre></div>
+</div>
+</section>
+<section id="benchmark">
+<h3>Benchmark<a class="headerlink" href="#benchmark" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>run_examples/catbench_quickstart.py<span class="w"> </span>&lt;DATASET&gt;<span class="w"> </span>--only<span class="w"> </span>MACE,SevenNet<span class="w"> </span><span class="o">[</span>--d3<span class="o">]</span>
+python<span class="w"> </span>scripts/catbench_report.py<span class="w"> </span>--result<span class="w"> </span>./result<span class="w"> </span>--out<span class="w"> </span>./report
+python3<span class="w"> </span>scripts/catbench_datasets.py<span class="w"> </span>--list
+</pre></div>
+</div>
+</section>
+<section id="fine-tune">
+<h3>Fine-tune<a class="headerlink" href="#fine-tune" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scripts/ft_run.py<span class="w"> </span>MACE<span class="w"> </span>--show-settings
+python<span class="w"> </span>scripts/ft_run.py<span class="w"> </span>MACE<span class="w"> </span>--dataset<span class="w"> </span>frames.traj<span class="w"> </span>--out<span class="w"> </span>ft_mace<span class="w"> </span>--epochs<span class="w"> </span><span class="m">50</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">0</span>
+python<span class="w"> </span>scripts/ft_verify.py<span class="w"> </span>ft_mace/&lt;checkpoint&gt;<span class="w"> </span>--model<span class="w"> </span>MACE<span class="w"> </span>--json
+</pre></div>
+</div>
+</section>
+<section id="distill">
+<h3>Distill<a class="headerlink" href="#distill" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HUB</span><span class="o">=</span><span class="nv">$PWD</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span>scripts/distill_bootstrap.py<span class="w"> </span>--teacher<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--structure<span class="w"> </span>slab.vasp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--work<span class="w"> </span>./distill<span class="w"> </span>--repo<span class="w"> </span>&lt;onthefly-distill&gt;<span class="w"> </span>--lmp-bin<span class="w"> </span>&lt;lmp&gt;
+<span class="nb">cd</span><span class="w"> </span>distill<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sh<span class="w"> </span>run_distill.sh<span class="w"> </span>&gt;<span class="w"> </span>distill.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="s2">"</span><span class="nv">$PY</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$HUB</span><span class="s2">/scripts/distill_verify.py"</span><span class="w"> </span>--work<span class="w"> </span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">"</span><span class="w"> </span>--json<span class="w">   </span><span class="c1"># judged only in production mode</span>
+</pre></div>
+</div>
+</section>
+<section id="ask-your-agent">
+<h3>Ask your agent<a class="headerlink" href="#ask-your-agent" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Task</p></th>
+<th class="head"><p>Example request</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Install</p></td>
+<td><p>Install MACE and check it runs on my GPU.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Run</p></td>
+<td><p>Relax POSCAR with MACE-MPA-0 and give me the relaxed structure.</p></td>
+</tr>
+<tr class="row-even"><td><p>Benchmark</p></td>
+<td><p>Benchmark MACE and SevenNet on adsorption energies for CO2 reduction on Cu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Your VASP data</p></td>
+<td><p>Turn my VASP calculations in ./my_dataset into a CatBench dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p>Fine-tune</p></td>
+<td><p>Fine-tune SevenNet-MF-OMPA on my DFT frames for 100 epochs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Distill</p></td>
+<td><p>Distill UMA-s-1p2-OMAT into an NN-MTP student for 300 K NVT MD of slab.vasp.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If something goes wrong: <a class="reference internal" href="#document-troubleshooting"><span class="doc">Troubleshooting and cleanup</span></a>. Full documentation: <a class="reference external" href="https://oh-my-mlip.org">https://oh-my-mlip.org</a></p>
+</section>
+</section>
+<span id="document-troubleshooting"></span><section id="troubleshooting-and-cleanup">
+<h2>Troubleshooting and cleanup<a class="headerlink" href="#troubleshooting-and-cleanup" title="Link to this heading">¶</a></h2>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Find out what state your installation is in</p></li>
+<li><p>Fix the most common problems</p></li>
+<li><p>Free disk space and report a problem</p></li>
+</ul>
+</div>
+<section id="check-the-state">
+<h3>Check the state<a class="headerlink" href="#check-the-state" title="Link to this heading">¶</a></h3>
+<p>From the hub directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>scripts/setup_survey.py<span class="w"> </span>--table<span class="w">              </span><span class="c1"># every env: ready / partial / missing, gated models, disk</span>
+./install.sh<span class="w"> </span>--status<span class="w"> </span>mace<span class="w">                           </span><span class="c1"># one env's install state; changes nothing</span>
+python3<span class="w"> </span>scripts/setup_verify.py<span class="w"> </span>MACE-MPA-0<span class="w"> </span>--json<span class="w">    </span><span class="c1"># energies and forces on the GPU</span>
+</pre></div>
+</div>
+<p>Or ask your agent:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>setup_verify failed for NequIP-OAM-L. Find out why and fix it.
+</pre></div>
+</div>
+</section>
+<section id="common-problems">
+<h3>Common problems<a class="headerlink" href="#common-problems" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symptom</p></th>
+<th class="head"><p>Cause</p></th>
+<th class="head"><p>Fix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>An install was interrupted, or an env is <code class="docutils literal notranslate"><span class="pre">partial</span></code></p></td>
+<td><p>The build stopped midway</p></td>
+<td><p>Run <code class="docutils literal notranslate"><span class="pre">./install.sh</span> <span class="pre">&lt;env&gt;</span></code> again. If its imports fail, it stops without deleting anything; <code class="docutils literal notranslate"><span class="pre">./install.sh</span> <span class="pre">--rebuild</span> <span class="pre">&lt;env&gt;</span></code> deletes the env and builds it again</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">setup_verify</span></code> passes with <code class="docutils literal notranslate"><span class="pre">degraded:</span> <span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">device:</span> <span class="pre">cpu</span></code></p></td>
+<td><p>The NVIDIA driver is older than the env’s CUDA build</p></td>
+<td><p>Upgrade the driver; see the <a class="reference external" href="https://oh-my-mlip.org/host_requirements/">host requirements</a></p></td>
+</tr>
+<tr class="row-even"><td><p>HTTP 401 or 403 when downloading UMA or eSEN</p></td>
+<td><p>License not accepted, or the token belongs to another account</p></td>
+<td><p>Accept the license on Hugging Face and run <code class="docutils literal notranslate"><span class="pre">hf</span> <span class="pre">auth</span> <span class="pre">login</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EOFError:</span> <span class="pre">Ran</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">input</span></code> or “… does not exist” when a model loads</p></td>
+<td><p>An empty or partial weight file from an interrupted download</p></td>
+<td><p>Remove the leftovers under <code class="docutils literal notranslate"><span class="pre">models/&lt;framework&gt;/</span></code> and run again</p></td>
+</tr>
+<tr class="row-even"><td><p>NequIP or Allegro fails to load on a different GPU</p></td>
+<td><p>The compiled model is for another GPU architecture</p></td>
+<td><p>Compile for this GPU; see <a class="reference external" href="https://oh-my-mlip.org/compile/">Accelerators</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>pip times out on <code class="docutils literal notranslate"><span class="pre">pypi.nvidia.com</span></code></p></td>
+<td><p>That host is unreachable from your network</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/install_nvidia_wheels.py</span> <span class="pre">&lt;env&gt;</span></code>, then <code class="docutils literal notranslate"><span class="pre">./install.sh</span> <span class="pre">&lt;env&gt;</span></code> again</p></td>
+</tr>
+<tr class="row-even"><td><p>D3 is unavailable</p></td>
+<td><p>No <code class="docutils literal notranslate"><span class="pre">nvcc</span></code> (CUDA toolkit)</p></td>
+<td><p>Install a CUDA toolkit and run <code class="docutils literal notranslate"><span class="pre">install.sh</span></code> again; the models themselves still run</p></td>
+</tr>
+<tr class="row-odd"><td><p>Loading <code class="docutils literal notranslate"><span class="pre">UMA-m-1p1-*</span></code> ends without an error message (exit code 137)</p></td>
+<td><p>The checkpoint does not fit in host RAM</p></td>
+<td><p>Use a machine with 32 GB of RAM or more, or a <code class="docutils literal notranslate"><span class="pre">UMA-s-*</span></code> model</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="free-disk-space">
+<h3>Free disk space<a class="headerlink" href="#free-disk-space" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>remove<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$OH_MY_MLIP_HOME</span><span class="s2">/envs/&lt;env&gt;"</span><span class="w">    </span><span class="c1"># an env built by install.sh</span>
+python3<span class="w"> </span>scripts/adopt_env.py<span class="w"> </span>--remove<span class="w"> </span>&lt;env&gt;<span class="w">          </span><span class="c1"># an env you adopted: removes only the registration</span>
+</pre></div>
+</div>
+<p>Weights live outside the environments: in each framework’s own cache (for example
+<code class="docutils literal notranslate"><span class="pre">~/.cache/fairchem</span></code>, <code class="docutils literal notranslate"><span class="pre">~/.cache/mace</span></code>, <code class="docutils literal notranslate"><span class="pre">~/.cache/huggingface</span></code>) and, for some
+models, under <code class="docutils literal notranslate"><span class="pre">models/</span></code> in the hub. Delete those directories to reclaim their
+space; they are downloaded or compiled again when needed.</p>
+</section>
+<section id="report-a-problem">
+<h3>Report a problem<a class="headerlink" href="#report-a-problem" title="Link to this heading">¶</a></h3>
+<p>Open an issue at <a class="reference external" href="https://github.com/JinukMoon/oh-my-mlip/issues">https://github.com/JinukMoon/oh-my-mlip/issues</a> and include:</p>
+<ul class="simple">
+<li><p>the command or request, and the full error output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/setup_verify.py</span> <span class="pre">&lt;model&gt;</span> <span class="pre">--json</span></code> for the model involved</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> and <code class="docutils literal notranslate"><span class="pre">./install.sh</span> <span class="pre">--status</span> <span class="pre">&lt;env&gt;</span></code></p></li>
+</ul>
+<p>Never include a Hugging Face token or other credentials.</p>
+</section>
+</section>
+</div>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Link to this heading">¶</a></h2>
+<p>This material is for computational chemists and materials scientists who want to
+use MLIPs, for HPC support staff who install MLIP software for users, and for
+anyone curious about how LLM agents can handle the setup of scientific software.</p>
+<p>By the end of this lesson, learners should be able to:</p>
+<ul class="simple">
+<li><p>Install an MLIP framework in an isolated environment and confirm that the
+model computes energies and forces on the GPU</p></li>
+<li><p>Get a ready-to-use ASE calculator for a supported model and run it in their
+own scripts</p></li>
+<li><p>Let an LLM agent do the setup, and check its work</p></li>
+<li><p>Prepare MLIP jobs for a Slurm GPU cluster</p></li>
+<li><p>Benchmark several MLIPs on adsorption energies with CatBench, including their
+own VASP data</p></li>
+<li><p>Fine-tune a pretrained model on their own DFT data with the framework’s own
+trainer</p></li>
+<li><p>Distill a large model into a small, fast student that runs MD in LAMMPS on
+CPU nodes</p></li>
+</ul>
+</section>
+<section id="current-scope">
+<h2>Current scope<a class="headerlink" href="#current-scope" title="Link to this heading">¶</a></h2>
+<p>The oh-my-mlip recipes and lock files are built for Linux x86-64 (<code class="docutils literal notranslate"><span class="pre">linux-64</span></code>
+packages) with NVIDIA GPUs. Arm-based nodes (such as GH200) and AMD GPUs have not
+been tested and are not supported yet.</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>oh-my-mlip documentation: <a class="reference external" href="https://oh-my-mlip.org">https://oh-my-mlip.org</a></p></li>
+<li><p>oh-my-mlip source code: <a class="reference external" href="https://github.com/JinukMoon/oh-my-mlip">https://github.com/JinukMoon/oh-my-mlip</a></p></li>
+<li><p>CatBench: <a class="reference external" href="https://github.com/JinukMoon/catbench">https://github.com/JinukMoon/catbench</a></p></li>
+<li><p>onthefly-distill (distillation engine): <a class="reference external" href="https://github.com/JinukMoon/onthefly-distill">https://github.com/JinukMoon/onthefly-distill</a></p></li>
+</ul>
+<div class="warning admonition">
+<p class="admonition-title">Credit</p>
+<p>This lesson was written by Jinuk Moon (Seoul National University) for the ENCCS
+webinar series, using the ENCCS
+<a class="reference external" href="https://github.com/ENCCS/sphinx-lesson-template">sphinx-lesson template</a>.</p>
+</div>
+<div class="attention admonition">
+<p class="admonition-title">License</p>
+<div class="attention dropdown admonition">
+<p class="admonition-title">CC BY-SA for media and pedagogical material</p>
+<p>Copyright © 2026 Jinuk Moon. This material is released under the Creative
+Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).</p>
+<p><strong>Canonical URL</strong>: <a class="reference external" href="https://creativecommons.org/licenses/by-sa/4.0/">https://creativecommons.org/licenses/by-sa/4.0/</a></p>
+<p><a class="reference external" href="https://creativecommons.org/licenses/by-sa/4.0/legalcode.en">See the legal code</a></p>
+</div>
+<div class="attention dropdown admonition">
+<p class="admonition-title">MIT for source code and code snippets</p>
+<p>MIT License</p>
+<p>Copyright (c) 2026, Jinuk Moon</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+</div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Jinuk Moon
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/JinukMoon/oh-my-mlip-lesson" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <p class="caption" role="heading"><span class="caption-text">Before you start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-setup">Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Part 1 - Installing, running and benchmarking</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-1-why">Why installing MLIPs is hard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-2-install">Install and verify a model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-3-use">Use a model in your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-4-hpc">Running on GPU clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part1-5-catbench">Benchmark MLIPs with CatBench</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Part 2 - Fine-tuning and distillation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-part2-1-finetune">Fine-tune a pretrained model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part2-2-distill">Distill a tailored MLIP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-part2-3-choose">Pretrained, fine-tuned or distilled?</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="#document-quick-reference">Quick reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#document-troubleshooting">Troubleshooting and cleanup</a></li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=d6d90d09"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=35a8b989"></script>
+    <script src="_static/minipres.js?v=a0d29692"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MCFDEW7MYW"></script>
+    <script src="_static/ga.js?v=f637ec56"></script>
+    </body>
+</html>
