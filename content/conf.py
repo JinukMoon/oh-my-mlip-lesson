@@ -91,6 +91,8 @@ html_theme = "furo"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 html_css_files = ["overrides.css"]
+# Google Analytics (same GA4 property as oh-my-mlip.org; lesson pages carry content_group "lesson")
+html_js_files = [("https://www.googletagmanager.com/gtag/js?id=G-MCFDEW7MYW", {"async": "async"}), "ga.js"]
 html_favicon = str((HERE / "_static" / "favicon.ico").resolve())
 github_repo_url = f"https://github.com/{github_user}/{github_repo_name or detected_repo_name}"
 html_theme_options = {
